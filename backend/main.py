@@ -61,3 +61,25 @@ def get_note(note_id: int):
     db.close()
     
     return note
+
+
+@app.put("/notes/{note_id}", response_model=schemas.NoteResponse)
+def put_note(note_id: int, note_data: schemas.NoteCreate):
+	db: Session = SessionLocal()
+	
+	note = db.query(models.Note).filter(models.Note.id == note_id).first()
+
+	if note is None:
+		raise HTTPException(
+			status_code = 404,
+			detail = "Note not found"
+		)
+	
+	note.title = note_data.title
+	note.content = note_data.content
+	
+	db.commit()
+	db.refresh(note)
+	db.close()
+
+	return note
