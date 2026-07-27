@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from sqlalchemy.orm import Session
+from typing import List
 
 import models
 import schemas
@@ -30,3 +31,33 @@ def create_note(note: schemas.NoteCreate):
     db.close()
 
     return new_note
+
+
+@app.get("/notes", response_model=List[schemas.NoteResponse])
+def get_notes():
+    db: Session = SessionLocal()
+
+    notes = db.query(models.Note).all()
+
+    db.close()  
+
+    return notes
+
+
+@app.get("/notes/{note_id}", response_model=schemas.NoteResponse)
+def get_note(note_id: int):
+    db: Session = SessionLocal()
+
+    note = db.query(models.Note).filter(models.Note.id == note_id).first()
+
+
+    if note is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Note not found"
+        )
+
+
+    db.close()
+    
+    return note
