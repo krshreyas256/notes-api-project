@@ -83,3 +83,23 @@ def put_note(note_id: int, note_data: schemas.NoteCreate):
 	db.close()
 
 	return note
+
+
+@app.delete("/notes/{note_id}")
+def delete_note(note_id: int):
+	db: Session = SessionLocal()
+
+	note = db.query(models.Note).filter(models.Note.id == note_id).first()
+
+	if note is None:
+		raise HTTPException(
+			status_code = 404,
+			detail = "Note not found"
+		)
+
+	db.delete(note)
+
+	db.commit()
+	db.close()
+	return {"message": "Note deleted successfully"}
+	
