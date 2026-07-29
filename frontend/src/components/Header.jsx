@@ -1,10 +1,10 @@
-function Header() {
-
+function Header(props) {
   return (
-	<div>
-		<h1>Notes App</h1>
-		<p>Welcome to my first React application!</p>
-	</div>
+    <div>
+      <h1>{props.title}</h1>
+      <p>{props.subtitle}</p>
+    </div>
   )
 }
+
 export default Header
