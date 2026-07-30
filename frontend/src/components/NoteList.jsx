@@ -1,7 +1,24 @@
+import NoteCard from './Notecard'
 function NoteList() {
-  return (
-    <h2>Note List</h2>
-  )
+	return (
+		<div>
+			<NoteCard
+				title="Shopping List"
+				content="Buy milk and bread."
+			/>
+
+			
+			<NoteCard
+				title="College"
+				content="Finish React assignment."
+			/>
+
+			<NoteCard
+				title="Vacation"
+				content="Book train tickets."
+			/>
+		</div>
+		)
 }
 
 export default NoteList
