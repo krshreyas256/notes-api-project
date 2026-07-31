@@ -1,22 +1,15 @@
 import NoteCard from './Notecard'
-function NoteList() {
+function NoteList({ notes }) {
 	return (
 		<div>
-			<NoteCard
-				title="Shopping List"
-				content="Buy milk and bread."
-			/>
-
-			
-			<NoteCard
-				title="College"
-				content="Finish React assignment."
-			/>
-
-			<NoteCard
-				title="Vacation"
-				content="Book train tickets."
-			/>
+			{
+				notes.map((note) => (
+					<NoteCard
+						title={note.title}
+				    	content={note.content}
+					/>
+				))
+			}
 		</div>
 		)
 }

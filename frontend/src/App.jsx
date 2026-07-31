@@ -3,8 +3,15 @@ import Header from './components/Header'
 import NoteForm from './components/NoteForm'
 import NoteList from './components/NoteList'
 import Footer from './components/Footer'
+import { useState } from 'react'
 
 function App() {
+	const [notes, setNotes] = useState([])
+
+	function addNote(note) {
+		setNotes([...notes, note])
+	}
+
 	return (
 		<div>
 			<Header
@@ -12,8 +19,13 @@ function App() {
 				subtitle="Welcome to my first React app"
 			/>
 
-			<NoteForm />
-			<NoteList />
+			<NoteForm 
+				onAddNote={addNote}	
+			/>
+			<NoteList 
+				notes={notes}
+			/>
+			
 			<Footer />
 		</div>
   )

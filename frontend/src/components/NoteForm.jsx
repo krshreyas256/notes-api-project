@@ -1,11 +1,18 @@
 import { useState } from 'react'
 
-function NoteForm() {
+function NoteForm(props) {
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState("")
 
+	function handleSubmit(event) {
+		event.preventDefault()
+		props.onAddNote({ title, content })
+		setTitle("")
+		setContent("")
+	}
+
 	return (
-		<form>
+		<form onSubmit={handleSubmit}>
 			<label>Title:</label>
 			<input 
 				type="text"
@@ -23,7 +30,7 @@ function NoteForm() {
 				}}>
 			</textarea>
 
-			<button>Add Note</button>
+			<button type="submit">Add Note</button>
 		</form>
   	)
 }
