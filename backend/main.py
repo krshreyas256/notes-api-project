@@ -1,12 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-
+from fastapi.middleware.cors import CORSMiddleware
 import models
 import schemas
 from database import Base, SessionLocal, engine
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 Base.metadata.create_all(bind=engine)
 

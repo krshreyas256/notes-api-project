@@ -9,8 +9,9 @@ import axios from "axios"
 function App() {
 	const [notes, setNotes] = useState([])
 
-	function addNote(note) {
-		setNotes([...notes, note])
+	async function addNote(note) {
+		await axios.post("http://127.0.0.1:8000/notes", note)
+		await fetchNotes()
 	}
 
 	async function fetchNotes() {
