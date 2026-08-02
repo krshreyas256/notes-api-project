@@ -1,15 +1,32 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-function NoteForm(props) {
+function NoteForm({ onAddNote, onUpdateNote, editingNote, onFinishEdit }) {
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState("")
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault()
-		props.onAddNote({ title, content })
+		if(editingNote) {
+			await onUpdateNote(editingNote.id, { title, content })
+			onFinishEdit()
+		}
+		else {
+			await onAddNote({ title, content })
+		}
 		setTitle("")
 		setContent("")
 	}
+
+	useEffect(() => {
+    	if (editingNote) {
+        	setTitle(editingNote.title)
+        	setContent(editingNote.content)
+    	} 
+		else {
+        	setTitle("")
+        	setContent("")
+    	}
+	}, [editingNote])
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -22,6 +39,8 @@ function NoteForm(props) {
 				}} 
 			/>
 
+			<br/>
+
 			<label>Content:</label>
 			<textarea
 				value={content}
@@ -30,7 +49,11 @@ function NoteForm(props) {
 				}}>
 			</textarea>
 
-			<button type="submit">Add Note</button>
+			<br/>
+
+			<button type="submit">
+				{editingNote ? "Update Note" : "Add Note"}
+			</button>
 		</form>
   	)
 }

@@ -1,8 +1,12 @@
-function NoteCard(props){
+function NoteCard({note, onEdit}){
 	return(
 		<div>
-			<h1>{props.title}</h1>
-			<p>{props.content}</p>
+			<h2>{note.title}</h2>
+			<p>{note.content}</p>
+			<br/>
+			<button onClick={() => onEdit(note)}>
+				Edit
+			</button>
 		</div>
 		)
 }

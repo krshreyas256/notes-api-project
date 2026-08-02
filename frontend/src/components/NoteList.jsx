@@ -1,14 +1,14 @@
-import NoteCard from './Notecard'
+import NoteCard from './NoteCard'
 
-function NoteList({ notes }) {
+function NoteList({ notes, onEdit }) {
 	return (
 		<div>
 			{
-				notes.map((note, index) => (
+				notes.map((note) => (
 					<NoteCard
-						key={index}
-						title={note.title}
-				    	content={note.content}
+						key={note.id}
+						note={note}
+						onEdit={onEdit}
 					/>
 				))
 			}
