@@ -25,6 +25,11 @@ function App() {
 		await fetchNotes()
 	}
 
+	async function handleDelete(id) {
+		await axios.delete(`http://127.0.0.1:8000/notes/${id}`)
+		await fetchNotes()
+	}
+
 	function handleEdit(note) {
 		setEditingNote(note)
 	}
@@ -53,6 +58,7 @@ function App() {
 			<NoteList 
 				notes={notes}
 				onEdit={handleEdit}
+				onDelete={handleDelete}
 			/>
 
 			<Footer />

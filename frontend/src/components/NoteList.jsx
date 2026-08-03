@@ -1,6 +1,6 @@
 import NoteCard from './NoteCard'
 
-function NoteList({ notes, onEdit }) {
+function NoteList({ notes, onEdit, onDelete }) {
 	return (
 		<div>
 			{
@@ -9,6 +9,7 @@ function NoteList({ notes, onEdit }) {
 						key={note.id}
 						note={note}
 						onEdit={onEdit}
+						onDelete={onDelete}
 					/>
 				))
 			}

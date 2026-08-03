@@ -1,4 +1,4 @@
-function NoteCard({note, onEdit}){
+function NoteCard({note, onEdit, onDelete}){
 	return(
 		<div>
 			<h2>{note.title}</h2>
@@ -6,6 +6,10 @@ function NoteCard({note, onEdit}){
 			<br/>
 			<button onClick={() => onEdit(note)}>
 				Edit
+			</button>
+
+			<button onClick={() => onDelete(note.id)}>
+				Delete
 			</button>
 		</div>
 		)
