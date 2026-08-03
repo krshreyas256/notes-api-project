@@ -1,16 +1,21 @@
+import "./NoteCard.css";
+
 function NoteCard({note, onEdit, onDelete}){
 	return(
-		<div>
+		<div className="note-card">
 			<h2>{note.title}</h2>
 			<p>{note.content}</p>
-			<br/>
-			<button onClick={() => onEdit(note)}>
-				Edit
-			</button>
 
-			<button onClick={() => onDelete(note.id)}>
-				Delete
-			</button>
+			<div className="button-group">
+				<button className="edit-btn" onClick={() => onEdit(note)}>
+					Edit
+				</button>
+
+				<button className="delete-btn" onClick={() => onDelete(note.id)}>
+					Delete
+				</button>
+			</div>
+
 		</div>
 		)
 }

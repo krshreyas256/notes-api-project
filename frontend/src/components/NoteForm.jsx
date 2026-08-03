@@ -1,3 +1,4 @@
+import './NoteForm.css'
 import { useState, useEffect } from 'react'
 
 function NoteForm({ onAddNote, onUpdateNote, editingNote, onFinishEdit }) {
@@ -49,11 +50,11 @@ function NoteForm({ onAddNote, onUpdateNote, editingNote, onFinishEdit }) {
 				}}>
 			</textarea>
 
-			<br/>
-
-			<button type="submit">
-				{editingNote ? "Update Note" : "Add Note"}
-			</button>
+			<div className="submit-container">
+				<button className="submit-btn" type="submit">
+					{editingNote ? "Update Note" : "Add Note"}
+				</button>
+			</div>
 		</form>
   	)
 }

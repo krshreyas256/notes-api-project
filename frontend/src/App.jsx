@@ -43,7 +43,7 @@ function App() {
 	}, [])
 
 	return (
-		<div>
+		<div className="container">
 			<Header
 				title="Notes Application"
 				subtitle="Welcome to my first React app"
